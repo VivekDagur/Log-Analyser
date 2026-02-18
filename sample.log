@@ -1,0 +1,6 @@
+[INFO] Starting server
+[INFO] Loading config.json
+[ERROR] FileNotFoundError: config.json not found
+[WARNING] Using default configuration
+[INFO] Processing input.txt
+[ERROR] IndexError: list index out of range
