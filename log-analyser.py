@@ -5,14 +5,17 @@ with open('sample.log','r') as file:
    for line in file:
       if 'ERROR' in line:
          error+=1
-      if 'INFO' in line:
-         info+=1
-      if 'WARNING' in line:
+      elif 'WARNING' in line:
          warning+=1
+      elif 'INFO' in line:
+         info+=1
    total=error+info+warning
+   print(error)
+   print(info)
+   print(warning)
    if total==0:
        print("SYSTEM EMPTY")
-   elif total!=0:
+   else:
       rate=int((error/total)*100)
       if rate==0:
             print("SYSTEM STABLE")
