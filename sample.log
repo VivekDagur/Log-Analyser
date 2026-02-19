@@ -4,3 +4,4 @@
 [WARNING] Using default configuration
 [INFO] Processing input.txt
 [ERROR] IndexError: list index out of range
+[INFO] request failed with ERROR 500
