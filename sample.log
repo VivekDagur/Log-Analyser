@@ -5,3 +5,4 @@
 [INFO] Processing input.txt
 [ERROR] IndexError: list index out of range
 [INFO] request failed with ERROR 500
+[INFO] retrying request after previous ERROR timeout
