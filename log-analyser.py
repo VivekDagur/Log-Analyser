@@ -46,7 +46,8 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python analyzer.py <logfile>")
     else:
-        analyze_log(sys.argv[1])      
+        analyze_log(sys.argv[1]) 
+print(analyze_log('sample.log'))     
 
        
       
