@@ -20,16 +20,28 @@ def analyze_log(file_path):
         print("Permission denied. Cannot read the file.")
         return
    total=error+info+warning
+   out={
+  "errors": error,
+  "warnings": warning,
+  "info": info,
+  "total": total,
+  "error_rate": 8.0,
+  "status": "None"
+}
    if total==0:
-            print("SYSTEM EMPTY")
-            return
+            out["status"]="SYSTEM EMPTY"
+            return out
+            
    rate=(error/total)*100
    if rate==0:
-      print("SYSTEM STABLE")
+      out["status"]="SYSTEM SAFE"
+      return out
    elif rate<=20:
-      print("SYSTEM DEGRADED")
+      out["status"]="SYSTEM DEGRADED"
+      return out
    else:
-      print("SYSTEM CRITICAL")    
+      out["status"]="SYSTEM CRITICAL"
+      return out   
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python analyzer.py <logfile>")
