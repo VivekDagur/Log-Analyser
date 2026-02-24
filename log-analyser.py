@@ -3,8 +3,7 @@ def analyze_log(file_path):
    error=0
    info=0
    warning=0
-   try:
-      with open(file_path,'r') as file:
+   with open(file_path,'r') as file:
          for line in file:
             line = line.strip()
             if '[ERROR]' in line:
@@ -13,19 +12,13 @@ def analyze_log(file_path):
                warning += 1
             elif '[INFO]' in line:
                info += 1
-   except FileNotFoundError:
-        print("File not found.")
-        return
-   except PermissionError:
-        print("Permission denied. Cannot read the file.")
-        return
    total=error+info+warning
    out={
   "errors": error,
   "warnings": warning,
   "info": info,
   "total": total,
-  "error_rate": 8.0,
+  "error_rate": 0.0,
   "status": "None"
 }
    if total==0:
@@ -33,6 +26,7 @@ def analyze_log(file_path):
             return out
             
    rate=(error/total)*100
+   out["error_rate"]=rate 
    if rate==0:
       out["status"]="SYSTEM SAFE"
    elif rate<=20:
