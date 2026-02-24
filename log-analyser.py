@@ -35,20 +35,22 @@ def analyze_log(file_path):
    rate=(error/total)*100
    if rate==0:
       out["status"]="SYSTEM SAFE"
-      return out
    elif rate<=20:
       out["status"]="SYSTEM DEGRADED"
-      return out
    else:
       out["status"]="SYSTEM CRITICAL"
-      return out   
+   return out   
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python analyzer.py <logfile>")
     else:
-        analyze_log(sys.argv[1]) 
-print(analyze_log('sample.log'))     
-
+        try:
+            result = analyze_log(sys.argv[1])
+            print(result)
+        except FileNotFoundError:
+            print("File not found.")
+        except PermissionError:
+            print("Permission denied. Cannot read the file.")
        
       
 
