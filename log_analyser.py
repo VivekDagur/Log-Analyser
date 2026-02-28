@@ -28,7 +28,7 @@ def analyze_log(file_path):
    out["error_rate"]=rate 
    if rate==0:
       out["status"]="SYSTEM HEALTHY"
-   elif rate<=10:
+   elif rate<=20:
       out["status"]="SYSTEM DEGRADED"
    else:
       out["status"]="SYSTEM CRITICAL"

@@ -45,10 +45,8 @@ def test_boundary_threshold(tmp_path):
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
-    # 1 error out of 5 = 20%
     assert result["error_rate"] == 20.0
-    assert result["status"] == "SYSTEM HEALTHY"
+    assert result["status"] == "SYSTEM DEGRADED"
 
 def test_mixed_safe_log(tmp_path):
     log_content = """[WARNING] Slow response
@@ -67,7 +65,7 @@ def test_mixed_safe_log(tmp_path):
     assert result["info"] == 3
     assert result["total"] == 5
     assert result["error_rate"] == 20.0
-    assert result["status"] == "SYSTEM HEALTHY"
+    assert result["status"] == "SYSTEM DEGRADED"
 
 def test_empty_log(tmp_path):
     log_file = tmp_path / "empty.log"
@@ -80,4 +78,4 @@ def test_empty_log(tmp_path):
     assert result["info"] == 0
     assert result["total"] == 0
     assert result["error_rate"] == 0.0
-    assert result["status"] == "SYSTEM HEALTHY"
+    assert result["status"] == "SYSTEM EMPTY"
