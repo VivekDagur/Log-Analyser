@@ -28,7 +28,7 @@ def analyze_log(file_path):
    out["error_rate"]=rate 
    if rate==0:
       out["status"]="SYSTEM HEALTHY"
-   elif rate<=20:
+   elif rate<=10:
       out["status"]="SYSTEM DEGRADED"
    else:
       out["status"]="SYSTEM CRITICAL"
@@ -44,7 +44,7 @@ if __name__ == "__main__":
             print("File Not Found")
         except PermissionError:
             print("Permission Denied. Cannot read the file.")
-       
+
       
 
 
