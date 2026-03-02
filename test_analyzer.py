@@ -79,3 +79,24 @@ def test_empty_log(tmp_path):
     assert result["total"] == 0
     assert result["error_rate"] == 0.0
     assert result["status"] == "SYSTEM EMPTY"
+
+def test_log_with_unknown_and_noise(tmp_path):
+    log_content = """[INFO] Started
+[DEBUG] Internal trace
+Random corrupted line
+[ERROR] Failure occurred
+[WARNING] Disk slow
+[TRACE] Verbose mode
+"""
+    log_file = tmp_path / "noise.log"
+    log_file.write_text(log_content)
+
+    result = analyze_log(log_file)
+
+    assert result["errors"] == 1
+    assert result["warnings"] == 1
+    assert result["info"] == 1
+    assert result["total"] == 3
+    assert result["error_rate"] == (1/3)*100
+    assert result["status"] == "SYSTEM CRITICAL"
+    
