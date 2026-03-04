@@ -18,17 +18,25 @@ def analyze_log(file_path):
   "warnings": warning,
   "info": info,
   "total": total,
-  "error_rate": 0.0,
+  "error_percentage": 0.0,
+  "warning_percentage": 0.0,
+  "info_percentage": 0.0,
   "status": "None"
 }
    if total==0:
             out["status"]="SYSTEM EMPTY"
             return out
-   rate=(error/total)*100
-   out["error_rate"]=rate 
-   if rate==0:
+   error_percentage = (error / total) * 100
+   warning_percentage = (warning / total) * 100
+   info_percentage = (info / total) * 100
+
+   out["error_percentage"] = error_percentage
+   out["warning_percentage"] = warning_percentage
+   out["info_percentage"] = info_percentage
+   out["error_percentage"]=error_percentage 
+   if error_percentage==0:
       out["status"]="SYSTEM HEALTHY"
-   elif rate<=20:
+   elif error_percentage<=20:
       out["status"]="SYSTEM DEGRADED"
    else:
       out["status"]="SYSTEM CRITICAL"
