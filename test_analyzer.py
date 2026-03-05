@@ -15,6 +15,8 @@ def test_stable_log(tmp_path):
     assert result["info"] == 3
     assert result["total"] == 3
     assert result["error_percentage"] == 0.0
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM HEALTHY"
     
 def test_critical_log(tmp_path):
