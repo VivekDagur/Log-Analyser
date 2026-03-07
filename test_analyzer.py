@@ -34,6 +34,8 @@ def test_critical_log(tmp_path):
     assert result["info"] == 1
     assert result["total"] == 3
     assert result["error_percentage"] > 20
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM CRITICAL"
 
 def test_boundary_threshold(tmp_path):
@@ -48,6 +50,8 @@ def test_boundary_threshold(tmp_path):
 
     result = analyze_log(log_file)
     assert result["error_percentage"] == 20.0
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM DEGRADED"
 
 def test_mixed_safe_log(tmp_path):
@@ -67,6 +71,8 @@ def test_mixed_safe_log(tmp_path):
     assert result["info"] == 3
     assert result["total"] == 5
     assert result["error_percentage"] == 20.0
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM DEGRADED"
 
 def test_empty_log(tmp_path):
@@ -80,6 +86,8 @@ def test_empty_log(tmp_path):
     assert result["info"] == 0
     assert result["total"] == 0
     assert result["error_percentage"] == 0.0
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM EMPTY"
 
 def test_log_with_unknown_and_noise(tmp_path):
@@ -100,5 +108,7 @@ Random corrupted line
     assert result["info"] == 1
     assert result["total"] == 3
     assert result["error_percentage"] == (1/3)*100
+    assert result["warning_percentage"] == 0.0
+    assert result["info_percentage"] == 100.0
     assert result["status"] == "SYSTEM CRITICAL"
     
