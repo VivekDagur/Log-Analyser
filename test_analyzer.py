@@ -9,7 +9,6 @@ def test_stable_log(tmp_path):
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 0
     assert result["warnings"] == 0
     assert result["info"] == 3
@@ -28,7 +27,6 @@ def test_critical_log(tmp_path):
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 2
     assert result["warnings"] == 0
     assert result["info"] == 1
@@ -49,7 +47,6 @@ def test_boundary_threshold(tmp_path):
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 1
     assert result["warnings"] == 0
     assert result["info"] == 4
@@ -70,7 +67,6 @@ def test_mixed_safe_log(tmp_path):
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 1
     assert result["warnings"] == 1
     assert result["info"] == 3
@@ -85,7 +81,6 @@ def test_empty_log(tmp_path):
     log_file.write_text("")
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 0
     assert result["warnings"] == 0
     assert result["info"] == 0
@@ -107,7 +102,6 @@ Random corrupted line
     log_file.write_text(log_content)
 
     result = analyze_log(log_file)
-
     assert result["errors"] == 1
     assert result["warnings"] == 1
     assert result["info"] == 1
