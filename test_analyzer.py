@@ -1,3 +1,4 @@
+import sys
 from  log_analyser import analyze_log
 
 def test_stable_log(tmp_path):
@@ -110,4 +111,22 @@ Random corrupted line
     assert result["warning_percentage"] == (1/3)*100
     assert result["info_percentage"] == (1/3)*100
     assert result["status"] == "SYSTEM CRITICAL"
-    
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python log_analyzer.py <log_file>")
+        sys.exit(1)
+
+    log_file = sys.argv[1]
+
+    result = analyze_log(log_file)
+
+    print("\n--- Log Analysis Report ---")
+    print(f"Total Logs: {result['total']}")
+    print(f"INFO: {result['info']} ({result['info_percentage']}%)")
+    print(f"WARNING: {result['warnings']} ({result['warning_percentage']}%)")
+    print(f"ERROR: {result['errors']} ({result['error_percentage']}%)")
+    print(f"System Status: {result['status']}")
+
+if __name__ == "__main__":
+    main()
