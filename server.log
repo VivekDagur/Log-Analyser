@@ -1,4 +1,4 @@
 [INFO] Server started
-[INFO] DB connected
-[WARNING] Slow response
-[ERROR] Timeout
+[INFO] DB connected sucessfully
+[WARNING] Slow response 
+[ERROR] Timeout intiated

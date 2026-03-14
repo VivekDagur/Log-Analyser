@@ -126,7 +126,6 @@ def main():
     log_file = sys.argv[1]
 
     result = analyze_log(log_file)
-
     print("\n--- Log Analysis Report ---")
     print(f"Total Logs: {result['total']}")
     print(f"INFO: {result['info']} ({result['info_percentage']}%)")
