@@ -106,7 +106,6 @@ Random corrupted line
 """
     log_file = tmp_path / "noise.log"
     log_file.write_text(log_content)
-
     result = analyze_log(log_file)
 
     assert result["errors"] == 1
@@ -124,7 +123,6 @@ def main():
         sys.exit(1)
 
     log_file = sys.argv[1]
-
     result = analyze_log(log_file)
     print("\n--- Log Analysis Report ---")
     print(f"Total Logs: {result['total']}")
@@ -135,4 +133,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
